@@ -87,15 +87,13 @@
             .then((response) => response.json())
             .then((data) => {
               if (data.message) {
-                // Successful verification
                 document.getElementById(
                   "responseMessage"
                 ).innerHTML = `<div class="alert alert-success">${data.message}</div>`;
                 setTimeout(() => {
-                  window.location.href = "login.html"; // Redirect to login page
+                  window.location.href = "login.html";
                 }, 2000);
               } else if (data.error) {
-                // Display error
                 document.getElementById(
                   "responseMessage"
                 ).innerHTML = `<div class="alert alert-danger">${data.error}</div>`;

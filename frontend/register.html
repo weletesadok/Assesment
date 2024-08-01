@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
-    <!-- Bootstrap CSS -->
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -70,7 +69,6 @@
       </form>
     </div>
 
-    <!-- Bootstrap and JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -92,28 +90,36 @@
             },
             body: JSON.stringify({ username, email, password }),
           })
-            .then((response) => response.json())
+            .then((response) => {
+              if (response.status === 500) {
+                throw new Error("Internal Server Error");
+              }
+              return response.json();
+            })
             .then((data) => {
               if (data.message) {
-                // Successful registration
                 document.getElementById(
                   "responseMessage"
                 ).innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-                // Redirect to verify.html
                 setTimeout(() => {
                   window.location.href = "verify.html";
                 }, 2000);
               } else if (data.error) {
-                // Display error
                 document.getElementById(
                   "responseMessage"
                 ).innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
               }
             })
             .catch((error) => {
-              document.getElementById(
-                "responseMessage"
-              ).innerHTML = `<div class="alert alert-danger">An error occurred: ${error.message}</div>`;
+              if (error.message === "Internal Server Error") {
+                document.getElementById(
+                  "responseMessage"
+                ).innerHTML = `<div class="alert alert-danger">A server error occurred. Please try again later.</div>`;
+              } else {
+                document.getElementById(
+                  "responseMessage"
+                ).innerHTML = `<div class="alert alert-danger">An error occurred: ${error.message}</div>`;
+              }
             });
         });
     </script>
