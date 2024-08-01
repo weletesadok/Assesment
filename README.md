@@ -6,37 +6,22 @@ Welcome to the Assessment Project! Follow the steps below to set up and run the 
 
 ### Backend Setup
 
-1. **Clone the Repository**:
-
-   ```sh
-   git clone https://github.com/weletesadok/Assesment.git
-   ```
-
-2. **Navigate to the Backend Directory**:
-
-   ```sh
-   cd Assesment/backend
-   ```
-
-3. **Install Dependencies**:
-
-   ```sh
-   composer install
-   ```
-
-4. **Start the PHP Development Server**:
-
-   ```sh
-   php spark serve
-   ```
-
-5. **Email verification Functionality**:
-   For now, the token is not sent via email. This feature is in progress. To check the full functionality with the current progress, you will need to take the token directly from the database.
-
    > ⚠️ **Ensure MySQL Server is Running**:
    >
    > - Make sure your MySQL server is running on the default port.
    > - Ensure a database named `ci4` is available.
+
+   ```sh
+   git clone https://github.com/weletesadok/Assesment.git
+   cd Assesment/backend
+   composer install
+   php spark serve
+   ```
+
+### Email verification Functionality
+   For now, the token is not sent via email. This feature is in progress. To check the full functionality with the current progress, you will need to take the token directly from the database.
+
+
 
 ### Frontend Setup
 
