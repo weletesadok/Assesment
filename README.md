@@ -6,22 +6,22 @@ Welcome to the Assessment Project! Follow the steps below to set up and run the 
 
 ### Backend Setup
 
-   > ⚠️ **Ensure MySQL Server is Running**:
-   >
-   > - Make sure your MySQL server is running on the default port.
-   > - Ensure a database named `ci4` is available.
+> ⚠️ **Ensure MySQL Server is Running**:
+>
+> - Make sure your MySQL server is running on the default port.
+> - Ensure a database named `ci4` is available.
 
-   ```sh
-   git clone https://github.com/weletesadok/Assesment.git
-   cd Assesment/backend
-   composer install
-   php spark serve
-   ```
+```sh
+git clone https://github.com/weletesadok/Assesment.git
+cd Assesment/backend
+composer install
+php spark migrate
+php spark serve
+```
 
 ### Email verification Functionality
-   For now, the token is not sent via email. This feature is in progress. To check the full functionality with the current progress, you will need to take the token directly from the database.
 
-
+For now, the token is not sent via email. This feature is in progress. To check the full functionality with the current progress, you will need to take the token directly from the database.
 
 ### Frontend Setup
 
