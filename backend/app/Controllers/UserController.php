@@ -43,12 +43,12 @@ class UserController extends Controller
         $data['token'] = random_int(100000, 999999);
         $data['isVerified'] = false;
 
-        if (!$this->userModel->save($data)) {
-            return $this->response->setStatusCode(ResponseInterface::HTTP_BAD_REQUEST)
-                                  ->setJSON(['error' => $this->userModel->errors()]);
-        }
-
+        
         if ($this->sendVerificationEmail($data['email'], $data['token'])) {
+            if (!$this->userModel->save($data)) {
+                return $this->response->setStatusCode(ResponseInterface::HTTP_BAD_REQUEST)
+                                      ->setJSON(['error' => $this->userModel->errors()]);
+            }
             return $this->response->setStatusCode(ResponseInterface::HTTP_CREATED)
                                   ->setJSON(['message' => 'Registration successful, please check your email for verification.']);
         } else {
@@ -59,7 +59,7 @@ class UserController extends Controller
 
     private function sendVerificationEmail($email, $token)
     {
-        $this->email->setFrom('weletesadok@gmail.com', 'Ayele Masresha');
+        $this->email->setFrom('weletesadok@gmail.com', 'Assesment application');
         $this->email->setTo($email);
         $this->email->setSubject('Email Verification');
         $this->email->setMessage("Your verification token is: $token");

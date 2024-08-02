@@ -19,10 +19,6 @@ php spark migrate
 php spark serve
 ```
 
-### Email verification Functionality
-
-For now, the token is not sent via email. This feature is in progress. To check the full functionality with the current progress, you will need to take the token directly from the database.
-
 ### Frontend Setup
 
 1. **Navigate to the Frontend Directory**:

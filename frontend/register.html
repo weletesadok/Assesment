@@ -64,7 +64,16 @@
             required
           />
         </div>
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary">
+          Register
+          <span
+            id="spinner"
+            class="spinner-border spinner-border-sm ml-2"
+            style="display: none"
+            role="status"
+            aria-hidden="true"
+          ></span>
+        </button>
         <div id="responseMessage" class="mt-3"></div>
       </form>
     </div>
@@ -83,6 +92,14 @@
           const email = document.getElementById("email").value;
           const password = document.getElementById("password").value;
 
+          const registerButton = document.querySelector(
+            "button[type='submit']"
+          );
+          const spinner = document.getElementById("spinner");
+
+          spinner.style.display = "inline-block";
+          registerButton.disabled = true;
+
           fetch("http://localhost:8080/api/register", {
             method: "POST",
             headers: {
@@ -91,6 +108,9 @@
             body: JSON.stringify({ username, email, password }),
           })
             .then((response) => {
+              spinner.style.display = "none";
+              registerButton.disabled = false;
+
               if (response.status === 500) {
                 throw new Error("Internal Server Error");
               }
@@ -111,6 +131,9 @@
               }
             })
             .catch((error) => {
+              spinner.style.display = "none";
+              registerButton.disabled = false;
+
               if (error.message === "Internal Server Error") {
                 document.getElementById(
                   "responseMessage"
